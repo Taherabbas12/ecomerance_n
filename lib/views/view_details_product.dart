@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:ecomerance/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -215,15 +217,19 @@ class _ViewDetailsProductState extends State<ViewDetailsProduct> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7))),
                 onPressed: () async {
-                  // Map<String, dynamic> newProduct = {
-                  //   'id_product': widget.indexValue,
-                  //   'quantity': quantity,
-                  //   'price': quantity * widget.product.price,
-                  // };
+                  Map<String, dynamic> newProduct = {
+                    'id_product': widget.indexValue,
+                    'quantity': quantity,
+                    'price': quantity * widget.product.price,
+                  };
 
-                  // int productId =
-                  //     await DatabaseHelper().insertProduct(newProduct);
-                  // print('تم إضافة المنتج برقم: $productId');
+                  int productId =
+                      await DatabaseHelper().insertProduct(newProduct);
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text('تمت أضافة المنتج'),
+                    backgroundColor: Colors.green,
+                  ));
+                  print('تم إضافة المنتج برقم: $productId');
                 },
                 child: Text(
                     'أضف إلى السلة (${quantity * widget.product.price} IQD)',

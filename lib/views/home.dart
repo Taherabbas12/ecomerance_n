@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../app_colors.dart';
+import 'basket.dart';
 import 'homeBody.dart';
+import 'profile.dart';
 import 'search_products.dart';
-import 'view_products_by_filter.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,15 +15,16 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<Widget> bodys = [
-    HomeBody(),
+    const HomeBody(),
     SearchProducts(),
-    HomeBody(),
-    HomeBody(),
+    ViewBasket(),
+    // Profile(),
   ];
   int index = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.transparent),
       backgroundColor: myColor1,
       //
       body: bodys[index],
@@ -41,9 +43,11 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'بحث'),
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart_checkout), label: 'السلة'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'حسابي')
+          // BottomNavigationBarItem(icon: Icon(Icons.person), label: 'حسابي')
         ],
       ),
+
+      drawer: const Drawer(child: Profile()),
     );
   }
 }

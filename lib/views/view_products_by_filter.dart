@@ -62,14 +62,13 @@ class _ViewProductsByFilterState extends State<ViewProductsByFilter> {
             ),
           ),
           const SizedBox(height: 10),
-          Expanded(
-              child: SingleChildScrollView(child: scrollViertical(context)))
+          Expanded(child: SingleChildScrollView(child: scrollViertical()))
         ],
       ),
     );
   }
 
-  Widget scrollViertical(BuildContext context) {
+  Widget scrollViertical() {
     return Wrap(
       spacing: 10,
       runSpacing: 10,
